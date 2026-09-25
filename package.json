@@ -1,0 +1,22 @@
+{
+  "name": "lukasiewicz-slajdy-ng-mf",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Angular, sygnały i mikrofrontendy (Łukasiewicz) - jednodniowy warsztat, slajdy reveal.js",
+  "scripts": {
+    "start": "vite --port 5181 --strictPort",
+    "dev": "vite --port 5181 --strictPort",
+    "build": "node scripts/check-slides.mjs && vite build",
+    "preview": "vite preview --port 5281 --strictPort",
+    "check": "node scripts/check-slides.mjs"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/lato": "^5.3.0",
+    "reveal.js": "^5.2.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7"
+  }
+}

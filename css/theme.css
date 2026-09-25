@@ -1,0 +1,493 @@
+/* =========================================================================
+   Bottega - motyw "React in Depth" (PIT-RADWAR)
+   Odwzorowanie stylu poprzednich slajdów:
+   - białe tło, granatowe nagłówki (#2C3E50)
+   - pomarańczowe podkreślenie tytułu (#E8552D)
+   - tytuły wyrównane do lewej, treść "od góry"
+   - font Lato, kod JetBrains Mono
+   ========================================================================= */
+
+:root {
+  --navy: #2c3e50;
+  --navy-soft: #34495e;
+  --orange: #e8552d;
+  --orange-soft: #ef7f4f;
+  --ink: #2c3e50;
+  --muted: #6b7c8d;
+  --bg: #ffffff;
+  --box: #eef2f6;
+  --box-border: #2c3e50;
+  --green: #2ecc71;
+  --blue: #3498db;
+  --code-bg: #1c2733;
+}
+
+.reveal {
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 27px;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  height: 100%;
+  top: 0 !important;
+  padding: 30px 48px 26px 48px;
+  box-sizing: border-box;
+}
+
+/* ---------- Nagłówki ---------- */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  color: var(--navy);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 0.4em 0;
+}
+
+/* Tytuł sekcji: duży, z pomarańczowym podkreśleniem */
+.reveal h1 {
+  font-size: 2.0em;
+  padding-bottom: 0.18em;
+  border-bottom: 4px solid var(--orange);
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+.reveal h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.14em;
+  border-bottom: 3px solid var(--orange);
+  display: inline-block;
+  margin-bottom: 0.45em;
+}
+
+.reveal h3 {
+  font-size: 1.15em;
+  color: var(--navy-soft);
+}
+
+.reveal h4 {
+  font-size: 0.9em;
+  color: var(--navy-soft);
+  font-weight: 700;
+}
+
+/* ---------- Slajd tytułowy / sekcyjny ---------- */
+.reveal section.title-slide,
+.reveal section.section-divider {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.reveal section.title-slide h1,
+.reveal section.section-divider h1 {
+  border-bottom: none;
+  font-size: 2.6em;
+  margin-bottom: 0.2em;
+}
+
+.reveal .title-rule {
+  width: 62%;
+  height: 4px;
+  background: var(--orange);
+  margin: 0.3em 0 0.6em 0;
+}
+
+.reveal .subtitle {
+  color: var(--muted);
+  font-size: 1.0em;
+  font-weight: 400;
+}
+
+.reveal .kicker {
+  color: var(--orange);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+/* Tło dywizora maluje warstwa tła reveal (data-background-color="#2c3e50"),
+   NIE tło sekcji - inaczej granat nachodzi na sąsiednie slajdy i przykrywa
+   ich tekst. Tu zostają tylko kolory tekstu (białe na granacie). */
+.reveal section.section-divider h1,
+.reveal section.section-divider h2,
+.reveal section.section-divider p,
+.reveal section.section-divider .kicker {
+  color: #fff;
+}
+.reveal section.section-divider .kicker {
+  color: var(--orange-soft);
+}
+
+/* ---------- Listy ---------- */
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin-left: 1.1em;
+}
+
+.reveal li {
+  margin: 0.22em 0;
+  line-height: 1.3;
+}
+
+.reveal li::marker {
+  color: var(--orange);
+}
+
+.reveal ul ul li::marker {
+  color: var(--muted);
+}
+
+/* ---------- Akcenty tekstowe ---------- */
+.reveal strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* Pogrubienie w nagłówku tabeli: tło jest granatowe, więc granatowy tekst
+   byłby niewidoczny. Dziedziczymy kolor z komórki (biały). */
+.reveal table th strong {
+  color: inherit;
+}
+
+.reveal em {
+  color: var(--navy-soft);
+}
+
+.reveal a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.reveal a:hover {
+  color: var(--orange);
+}
+
+/* inline code */
+.reveal :not(pre) > code {
+  font-family: "JetBrains Mono", monospace;
+  background: #eef2f6;
+  color: #c0392b;
+  padding: 0.08em 0.34em;
+  border-radius: 5px;
+  font-size: 0.82em;
+}
+
+/* ---------- Bloki kodu ---------- */
+.reveal pre {
+  width: 100%;
+  margin: 0.35em 0;
+  box-shadow: 0 8px 24px rgba(44, 62, 80, 0.18);
+  border-radius: 10px;
+  /* 0.46em dawało 12,4px w kadrze 1280×720 - mniej niż połowa tekstu (27px)
+     i za mało, żeby czytać kod z rzutnika albo z udostępnionego ekranu.
+     0.62em to 16,7px: największa wartość, przy której żaden slajd nie wychodzi
+     poza kadr (sprawdzone w przeglądarce na wszystkich slajdach). */
+  font-size: 0.62em;
+}
+
+.reveal pre code {
+  font-family: "JetBrains Mono", monospace;
+  padding: 14px 18px;
+  border-radius: 10px;
+  line-height: 1.38;
+  max-height: 560px;
+  background: var(--code-bg);
+  -webkit-font-smoothing: auto;
+}
+
+.reveal pre code .hljs-ln-numbers {
+  color: #5b6b7a;
+}
+
+/* ---------- Cytaty / boxy ---------- */
+.reveal blockquote {
+  width: 100%;
+  background: var(--box);
+  border-left: 6px solid var(--navy);
+  padding: 0.55em 0.9em;
+  font-style: italic;
+  color: var(--navy-soft);
+  box-shadow: none;
+  font-size: 0.86em;
+  margin: 0.45em 0;
+}
+
+.reveal blockquote em {
+  font-style: italic;
+}
+
+/* "callout" pudełka: .note .tip .warn */
+.reveal .callout {
+  border-left: 6px solid var(--blue);
+  background: #eef5fb;
+  padding: 0.5em 0.8em;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.8em;
+  margin: 0.4em 0;
+}
+.reveal .callout.tip {
+  border-left-color: var(--green);
+  background: #eafaf1;
+}
+.reveal .callout.warn {
+  border-left-color: var(--orange);
+  background: #fdf0eb;
+}
+.reveal .callout.task {
+  border-left-color: var(--navy);
+  background: #eef2f6;
+}
+.reveal .callout .label {
+  display: block;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7em;
+  margin-bottom: 0.2em;
+  color: var(--navy);
+}
+
+/* ---------- Układ dwukolumnowy ---------- */
+.reveal .cols {
+  display: flex;
+  gap: 1.6em;
+  align-items: flex-start;
+  width: 100%;
+}
+.reveal .cols > * {
+  flex: 1;
+  min-width: 0;
+}
+.reveal .cols.narrow-left > :first-child {
+  flex: 0 0 38%;
+}
+
+/* ---------- Tabele ---------- */
+.reveal table {
+  font-size: 0.72em;
+  border-collapse: collapse;
+  margin: 0.4em 0;
+}
+.reveal table th {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.32em 0.6em;
+  text-align: left;
+  border: none;
+}
+.reveal table td {
+  padding: 0.26em 0.6em;
+  border-bottom: 1px solid #dde4ea;
+}
+.reveal table tr:nth-child(even) td {
+  background: #f6f9fb;
+}
+
+/* ---------- Stopka źródła ---------- */
+.reveal .source {
+  position: absolute;
+  bottom: 16px;
+  right: 56px;
+  font-size: 0.5em;
+  color: var(--muted);
+}
+
+.reveal .badge {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.12em 0.7em;
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+.reveal .badge.navy {
+  background: var(--navy);
+}
+.reveal .badge.blue {
+  background: var(--blue);
+}
+
+/* ---------- Drobne ---------- */
+.reveal .fragment.highlight-orange.visible {
+  color: var(--orange);
+}
+
+.reveal .small {
+  font-size: 0.8em;
+}
+.reveal .muted {
+  color: var(--muted);
+}
+.reveal .center {
+  text-align: center;
+}
+
+/* Numeracja slajdów / kontrolki w kolorystyce motywu */
+.reveal .slide-number {
+  background: rgba(44, 62, 80, 0.75);
+  font-family: "Lato", sans-serif;
+}
+.reveal .controls {
+  color: var(--orange);
+}
+.reveal .progress {
+  color: var(--orange);
+  height: 4px;
+}
+
+/* Linia oddzielająca "krok po kroku" */
+.reveal hr {
+  border: none;
+  border-top: 1px solid #dde4ea;
+  margin: 0.6em 0;
+}
+
+/* =========================================================================
+   Rozszerzenia motywu - szkolenie "Architektura dla Frontendu"
+   ========================================================================= */
+
+/* trzy kolumny */
+.reveal .cols3 {
+  display: flex;
+  gap: 1.1em;
+  align-items: stretch;
+  width: 100%;
+}
+.reveal .cols3 > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* karta / kafelek */
+.reveal .card {
+  background: var(--box);
+  border-top: 4px solid var(--navy);
+  border-radius: 0 0 8px 8px;
+  padding: 0.5em 0.75em;
+  font-size: 0.78em;
+}
+.reveal .card.orange { border-top-color: var(--orange); }
+.reveal .card.blue { border-top-color: var(--blue); }
+.reveal .card.green { border-top-color: var(--green); }
+.reveal .card h4 { margin: 0 0 0.3em 0; font-size: 1em; }
+.reveal .card ul { margin-left: 0.9em; }
+.reveal .card li { margin: 0.16em 0; }
+
+/* zalety / wady - kolumny trade-offów */
+.reveal .tradeoff {
+  display: flex;
+  gap: 1.2em;
+  width: 100%;
+  font-size: 0.8em;
+}
+.reveal .tradeoff > div { flex: 1; min-width: 0; }
+.reveal .tradeoff .pros,
+.reveal .tradeoff .cons {
+  padding: 0.45em 0.75em;
+  border-radius: 8px;
+}
+.reveal .tradeoff .pros { background: #eafaf1; border-left: 5px solid var(--green); }
+.reveal .tradeoff .cons { background: #fdf0eb; border-left: 5px solid var(--orange); }
+.reveal .tradeoff h4 {
+  margin: 0 0 0.25em 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8em;
+}
+
+/* diagram ASCII - wyśrodkowany, bez podświetlania składni */
+.reveal pre.ascii code,
+.reveal .ascii pre code {
+  background: #f6f9fb;
+  color: var(--navy);
+  box-shadow: none;
+  border: 1px solid #dde4ea;
+}
+.reveal pre.ascii { box-shadow: none; }
+
+/* duża liczba / hasło */
+.reveal .big {
+  font-size: 1.6em;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1.1;
+}
+
+/* rząd metryk */
+.reveal .metrics {
+  display: flex;
+  gap: 1.2em;
+  width: 100%;
+  text-align: center;
+  margin: 0.4em 0;
+}
+.reveal .metrics > div { flex: 1; }
+.reveal .metrics .value {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--orange);
+}
+.reveal .metrics .label {
+  display: block;
+  font-size: 0.62em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* slajd-ćwiczenie */
+.reveal section.exercise h2 { border-bottom-color: var(--green); }
+.reveal .callout.exercise {
+  border-left-color: var(--green);
+  background: #eafaf1;
+}
+.reveal .callout.exercise .label { color: #1e8449; }
+
+/* gęstsza treść, gdy slajd jest długi */
+.reveal .dense { font-size: 0.84em; }
+.reveal .dense li { margin: 0.18em 0; }
+
+/* --- rytm pionowy: slajdy są gęste, więc tniemy domyślne odstępy reveal.js --- */
+.reveal p {
+  margin: 0.35em 0;
+  line-height: 1.35;
+}
+.reveal .cols,
+.reveal .cols3 {
+  margin: 0.2em 0;
+}
+.reveal ul,
+.reveal ol {
+  margin: 0.25em 0 0.25em 1.1em;
+}
+.reveal .card h4,
+.reveal .tradeoff h4 {
+  margin-bottom: 0.25em;
+}
+.reveal .card p,
+.reveal .callout p,
+.reveal .tradeoff p {
+  margin: 0.25em 0;
+}
